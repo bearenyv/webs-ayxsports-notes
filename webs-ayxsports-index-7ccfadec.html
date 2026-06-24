@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>知识库 · 爱游戏体育</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fbe7c6 0%, #f3d5b5 40%, #edd8b7 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #2e241c;
+            padding: 2rem 1.2rem;
+            min-height: 100vh;
+        }
+
+        .page-wrap {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 顶部导航标识 */
+        .site-badge {
+            display: inline-block;
+            background: rgba(255, 247, 235, 0.65);
+            backdrop-filter: blur(4px);
+            border-radius: 40px;
+            padding: 0.4rem 1.2rem;
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+            color: #6a4e3a;
+            border: 1px solid rgba(180, 140, 110, 0.2);
+            margin-bottom: 2.2rem;
+        }
+
+        .site-badge span {
+            font-weight: 500;
+            margin-right: 0.3rem;
+        }
+
+        /* Hero 区 —— 目录感标题 */
+        .hero-catalog {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .hero-headline {
+            background: #fffcf7;
+            border-radius: 28px;
+            padding: 2.8rem 2.4rem 2.4rem;
+            box-shadow: 0 12px 28px rgba(140, 100, 70, 0.10), 0 6px 12px rgba(0,0,0,0.02);
+            border: 1px solid #f1e4d8;
+        }
+
+        .hero-headline h1 {
+            font-size: 2.6rem;
+            font-weight: 650;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #3d291e;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+
+        .hero-headline h1 small {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #7f6653;
+            margin-left: 1rem;
+            background: #f1e7de;
+            padding: 0.2rem 1rem;
+            border-radius: 60px;
+            white-space: nowrap;
+        }
+
+        .hero-headline .sub-dir {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1.4rem;
+            margin-top: 0.8rem;
+            font-size: 0.95rem;
+            color: #5f4839;
+            border-top: 1px dashed #e5d6c9;
+            padding-top: 1.2rem;
+        }
+
+        .hero-headline .sub-dir span {
+            background: #f6ede5;
+            padding: 0.1rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+        }
+
+        /* 主卡片网格 —— 知识库目录感布局 */
+        .guide-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.8rem;
+            margin: 2.5rem 0 1.8rem;
+        }
+
+        @media (min-width: 680px) {
+            .guide-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .guide-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+
+        .card-item {
+            background: #fffffffb;
+            border-radius: 24px;
+            padding: 1.8rem 1.6rem 2rem;
+            box-shadow: 0 6px 16px rgba(120, 85, 55, 0.06);
+            border: 1px solid #efe3d8;
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+
+        .card-item:hover {
+            box-shadow: 0 12px 28px rgba(110, 75, 50, 0.10);
+            transform: translateY(-3px);
+        }
+
+        .card-item .card-emoji {
+            font-size: 2rem;
+            margin-bottom: 0.4rem;
+            display: inline-block;
+        }
+
+        .card-item h3 {
+            font-size: 1.25rem;
+            font-weight: 620;
+            color: #332218;
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.01em;
+        }
+
+        .card-item .tag-dir {
+            display: inline-block;
+            background: #f4eae2;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.8rem;
+            border-radius: 20px;
+            color: #5d4432;
+            margin-bottom: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+
+        .card-item p {
+            font-size: 0.95rem;
+            color: #4f3b2c;
+            margin: 0.5rem 0 0.2rem;
+        }
+
+        .card-item ul {
+            list-style: none;
+            margin-top: 0.6rem;
+        }
+
+        .card-item ul li {
+            position: relative;
+            padding-left: 1.2rem;
+            font-size: 0.9rem;
+            margin-bottom: 0.35rem;
+            color: #4b382a;
+        }
+
+        .card-item ul li::before {
+            content: "·";
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+            color: #b48e72;
+        }
+
+        /* 提示区 + 相关信息区 组合 */
+        .info-combo {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin: 2.2rem 0;
+        }
+
+        @media (min-width: 700px) {
+            .info-combo {
+                flex-direction: row;
+            }
+        }
+
+        .info-box {
+            flex: 1;
+            background: #fffbf8;
+            border-radius: 24px;
+            padding: 1.6rem 1.8rem;
+            border: 1px solid #eddccc;
+            box-shadow: 0 4px 10px rgba(120, 85, 55, 0.04);
+        }
+
+        .info-box h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2d1f16;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .info-box p, .info-box li {
+            font-size: 0.95rem;
+            color: #4f3a2b;
+        }
+
+        .info-box ul {
+            list-style: none;
+            margin-top: 0.25rem;
+        }
+
+        .info-box ul li {
+            padding-left: 1.1rem;
+            position: relative;
+            margin-bottom: 0.3rem;
+        }
+
+        .info-box ul li::before {
+            content: "›";
+            position: absolute;
+            left: 0;
+            color: #b08866;
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .link-chip {
+            display: inline-block;
+            background: #f0e3d8;
+            border-radius: 40px;
+            padding: 0.3rem 1.2rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #3a281e;
+            border: 1px solid #ddcbbd;
+            transition: background 0.15s, border-color 0.15s;
+            margin: 0.6rem 0.2rem 0.1rem;
+            text-decoration: none;
+        }
+
+        .link-chip:hover {
+            background: #e7d5c6;
+            border-color: #bb9e88;
+        }
+
+        /* 主链接按钮 —— 指向爱游戏体育 */
+        .primary-link-wrap {
+            margin: 2.2rem 0 1.5rem;
+            text-align: left;
+        }
+
+        .primary-link-wrap a {
+            display: inline-block;
+            background: #ad8263;
+            color: #fffcf7;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 0.9rem 2.2rem;
+            border-radius: 60px;
+            text-decoration: none;
+            letter-spacing: 0.3px;
+            box-shadow: 0 6px 12px rgba(130, 85, 55, 0.15);
+            border: 1px solid #9a7357;
+            transition: background 0.18s, transform 0.1s;
+        }
+
+        .primary-link-wrap a:hover {
+            background: #8f6a4f;
+            transform: scale(1.01);
+            box-shadow: 0 8px 18px rgba(110, 70, 40, 0.18);
+        }
+
+        .primary-link-wrap .context-label {
+            display: block;
+            font-size: 0.85rem;
+            color: #6d5543;
+            margin-top: 0.5rem;
+        }
+
+        .faq-mini {
+            background: #fffcf6;
+            border-radius: 24px;
+            padding: 1.8rem 1.8rem 2rem;
+            border: 1px solid #e6d5c6;
+            margin: 2.2rem 0;
+        }
+
+        .faq-mini h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2e1e14;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .faq-item {
+            margin-bottom: 0.9rem;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: #3d2b1e;
+        }
+
+        .faq-item p {
+            font-size: 0.9rem;
+            color: #574333;
+            margin-top: 0.1rem;
+            padding-left: 0.1rem;
+        }
+
+        .footnote {
+            font-size: 0.8rem;
+            color: #73604f;
+            border-top: 1px solid #e3d2c4;
+            padding-top: 1.5rem;
+            margin-top: 2rem;
+            text-align: left;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 1.5rem;
+        }
+
+        .footnote a {
+            color: #604734;
+            text-decoration: underline 1px dotted #b99a82;
+            text-underline-offset: 4px;
+        }
+
+        .footnote a:hover {
+            color: #312117;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e7d5c4;
+            margin: 0.5rem 0;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+    <!-- 标识 -->
+    <div class="site-badge"><span>📋 知识库</span> · 简明指南 · 访问提醒</div>
+
+    <!-- Hero 目录感 -->
+    <div class="hero-catalog">
+        <div class="hero-headline">
+            <h1>
+                爱游戏体育 <small>知识库·使用索引</small>
+            </h1>
+            <div class="sub-dir">
+                <span>🔹 快速导航</span>
+                <span>🔹 常见场景</span>
+                <span>🔹 访问提示</span>
+                <span>🔹 相关参考</span>
+            </div>
+            <p style="margin-top: 1rem; font-size: 1rem; color: #564031;">
+                本页汇集平台结构、功能说明与实用提醒，适合新用户快速了解概况与访问方式。
+            </p>
+        </div>
+    </div>
+
+    <!-- 网格卡片：目录式 -->
+    <div class="guide-grid">
+        <div class="card-item">
+            <div class="card-emoji">📁</div>
+            <h3>平台概览</h3>
+            <div class="tag-dir">指南</div>
+            <p>综合性体育内容交互版块，覆盖资讯、数据、赛事追踪及社区动态。</p>
+            <ul>
+                <li>多栏目分类索引</li>
+                <li>实时数据整合</li>
+                <li>个人订阅功能</li>
+            </ul>
+        </div>
+        <div class="card-item">
+            <div class="card-emoji">⚙️</div>
+            <h3>功能模块</h3>
+            <div class="tag-dir">说明</div>
+            <p>核心功能区包括信息流、搜索、收藏及个性化推荐。</p>
+            <ul>
+                <li>智能筛选与标签</li>
+                <li>赛事日历视图</li>
+                <li>关注列表同步</li>
+            </ul>
+        </div>
+        <div class="card-item">
+            <div class="card-emoji">🔐</div>
+            <h3>账号与安全</h3>
+            <div class="tag-dir">提醒</div>
+            <p>通过官方渠道注册或登录，注意核对域名与协议标识。</p>
+            <ul>
+                <li>邮箱/手机绑定</li>
+                <li>双重验证可选</li>
+                <li>定期修改密码</li>
+            </ul>
+        </div>
+        <div class="card-item">
+            <div class="card-emoji">📡</div>
+            <h3>访问方式</h3>
+            <div class="tag-dir">指引</div>
+            <p>推荐使用主流浏览器最新版本，保持网络通畅。</p>
+            <ul>
+                <li>桌面端 / 移动端自适应</li>
+                <li>HTTPS 加密连接</li>
+                <li>清除缓存可改善加载</li>
+            </ul>
+        </div>
+        <div class="card-item">
+            <div class="card-emoji">🧩</div>
+            <h3>内容分类</h3>
+            <div class="tag-dir">信息</div>
+            <p>资讯、数据、视频、讨论区等分区明确，可按兴趣筛选。</p>
+            <ul>
+                <li>热门 / 最新 / 推荐</li>
+                <li>按运动项目细分</li>
+                <li>原创内容标注</li>
+            </ul>
+        </div>
+        <div class="card-item">
+            <div class="card-emoji">📎</div>
+            <h3>相关链接</h3>
+            <div class="tag-dir">资源</div>
+            <p>通过可信来源获取最新地址，避免仿冒站点。</p>
+            <ul>
+                <li>帮助中心</li>
+                <li>服务状态页</li>
+                <li>官方社交媒体</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 主链接：爱游戏体育 (严格要求可见文本) -->
+    <div class="primary-link-wrap">
+        <a href="https://webs-ayxsports.com.cn">爱游戏体育</a>
+        <span class="context-label">↑ 直接访问平台首页 · 建议添加书签</span>
+    </div>
+
+    <!-- 提示区 + 相关信息区 组合 -->
+    <div class="info-combo">
+        <div class="info-box">
+            <h4>⚠️ 访问提醒</h4>
+            <ul>
+                <li>始终通过浏览器地址栏手动输入或使用已保存的书签访问。</li>
+                <li>留意网址前缀是否为 <code>https://webs-ayxsports.com.cn</code>，避免输入错误。</li>
+                <li>若页面加载异常，可尝试更换网络环境或刷新页面。</li>
+                <li>官方不会通过私信或弹窗索要密码。</li>
+            </ul>
+        </div>
+        <div class="info-box">
+            <h4>📌 相关信息</h4>
+            <ul>
+                <li>平台提供多语言界面（中文为主）。</li>
+                <li>内容更新频率约每日数次，高峰时段可能有延迟。</li>
+                <li>支持常见移动设备浏览器横竖屏自适应。</li>
+                <li>部分功能需登录后使用，注册流程约2分钟。</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="faq-mini">
+        <h4>❓ FAQ 摘要</h4>
+        <div class="faq-item">
+            <strong>如何确认当前访问的是官方站点？</strong>
+            <p>核对浏览器地址栏完整域名是否为 <code>webs-ayxsports.com.cn</code>，并查看页面底部备案或版权信息。</p>
+        </div>
+        <div class="faq-item">
+            <strong>忘记密码怎么办？</strong>
+            <p>在登录页选择「找回密码」，根据注册邮箱或手机号重置。如果收不到邮件，检查垃圾箱或稍后重试。</p>
+        </div>
+        <div class="faq-item">
+            <strong>移动端界面显示异常？</strong>
+            <p>尝试刷新页面或更新浏览器至最新版本。部分旧浏览器可能存在兼容问题。</p>
+        </div>
+        <div style="margin-top: 1rem;">
+            <a href="https://webs-ayxsports.com.cn" class="link-chip">爱游戏体育</a>
+            <span style="font-size: 0.85rem; color: #624c3b; margin-left: 0.6rem;">—— 更多问题可查看帮助中心</span>
+        </div>
+    </div>
+
+    <!-- 脚注 -->
+    <div class="footnote">
+        <span>© 2025 · 信息页</span>
+        <span>本页面为知识库入口式介绍，内容供参考。</span>
+        <a href="https://webs-ayxsports.com.cn">爱游戏体育</a>
+    </div>
+</div>
+</body>
+</html>
