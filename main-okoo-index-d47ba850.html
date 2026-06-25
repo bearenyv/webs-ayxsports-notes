@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>故事里的网络踪迹 · 澳客</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background-color: #f4f2ed;
+            color: #26231e;
+            line-height: 1.7;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: linear-gradient(145deg, #1b1a18 0%, #2f2c27 100%);
+            padding: 4.5rem 2rem 3.8rem;
+            text-align: center;
+            border-bottom: 1px solid #4b473f;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 350;
+            letter-spacing: 2px;
+            color: #e9dfd0;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero .opening {
+            max-width: 680px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+            color: #c8bfb0;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .hero .opening strong {
+            color: #f3e7d4;
+            font-weight: 500;
+        }
+
+        /* 浅色正文区 */
+        .main-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2.8rem 1.8rem 4rem;
+        }
+
+        .intro-block {
+            background: #fffffffa;
+            padding: 2.8rem 2.5rem;
+            border-radius: 24px;
+            box-shadow: 0 6px 26px rgba(0,0,0,0.04);
+            margin-bottom: 2.5rem;
+        }
+
+        .intro-block p {
+            margin-bottom: 1.4rem;
+            font-size: 1.05rem;
+            color: #2f2b26;
+        }
+
+        .intro-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        .intro-block a {
+            color: #9d6f3f;
+            text-decoration: none;
+            border-bottom: 1px dashed #cbaa82;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .intro-block a:hover {
+            color: #7b562f;
+            border-bottom-color: #7b562f;
+        }
+
+        /* 特点卡片列表 */
+        .traits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.8rem;
+            margin: 2.2rem 0 1.8rem;
+        }
+
+        .trait-card {
+            background: #faf8f4;
+            border-radius: 20px;
+            padding: 1.6rem 1.4rem;
+            border: 1px solid #e3ddd4;
+            transition: transform 0.2s ease, box-shadow 0.25s;
+        }
+
+        .trait-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.05);
+        }
+
+        .trait-card h3 {
+            font-size: 1.2rem;
+            font-weight: 450;
+            color: #3b342c;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .trait-card h3::before {
+            content: "·";
+            color: #b48a5d;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+
+        .trait-card p {
+            font-size: 0.95rem;
+            color: #4c453c;
+            line-height: 1.6;
+        }
+
+        .scene-note {
+            background: #edeae3;
+            padding: 1.6rem 2rem;
+            border-radius: 20px;
+            margin: 1.8rem 0 2rem;
+            font-size: 1rem;
+            color: #2f2a24;
+        }
+
+        .scene-note em {
+            font-style: italic;
+            color: #8b6d4b;
+        }
+
+        .faq-mini {
+            background: #ffffff;
+            border: 1px solid #e2d9ce;
+            border-radius: 20px;
+            padding: 1.6rem 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .faq-mini h4 {
+            font-weight: 450;
+            font-size: 1.1rem;
+            color: #3b342c;
+            margin-bottom: 0.8rem;
+        }
+
+        .faq-mini p {
+            font-size: 0.98rem;
+            color: #4f473e;
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-mini p:last-child {
+            margin-bottom: 0;
+        }
+
+        .gentle-footer {
+            margin-top: 3rem;
+            text-align: center;
+            border-top: 1px solid #ddd6cb;
+            padding-top: 2rem;
+            font-size: 0.9rem;
+            color: #6f675d;
+        }
+
+        .gentle-footer span {
+            color: #876e51;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .intro-block {
+                padding: 1.8rem 1.2rem;
+            }
+            .traits-grid {
+                gap: 1.2rem;
+            }
+            .trait-card {
+                padding: 1.2rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 + 开场短句 -->
+    <div class="hero">
+        <h1>一段踪迹，半卷风土</h1>
+        <div class="opening">
+            一些网络节点并不只是地址，它们是故事发生的小站。<br>
+            当数据穿过网关，<strong>总有一些名字</strong>在背后标记着方向与用意。
+        </div>
+    </div>
+
+    <!-- 浅色正文区 -->
+    <div class="main-container">
+
+        <div class="intro-block">
+            <p>
+                如果仔细听，每一个域名背后都有一段属于自己的上下文。有人把它当作工具，有人把它当作坐标，也有人只是恰好路过。而「澳客」这两个字所承载的，比一个简单的称呼要多出不少——它是一片由代码、内容与活跃用户共同编织的场域。这个场域并不张扬，却始终有它的节奏与脉络。
+            </p>
+            <p>
+                很多年前，网络上的信息还是稀疏的信号，需要耐心检索才能拼出全貌。今天，<a href="https://main-okoo.com">澳客</a> 依然保持一种克制的存在：不追逐喧嚣的流量，而是把注意力放在内容本身的品质与连续性上。它像一间安静的资料室，每一条记录都经过筛选，留给真正需要它的人。
+            </p>
+        </div>
+
+        <!-- 特点列表 -->
+        <div class="traits-grid">
+            <div class="trait-card">
+                <h3>信息沉淀</h3>
+                <p>不堆砌噪声，保留有价值的内容结构，让每个访问者都能找到属于自己那部分的线索。</p>
+            </div>
+            <div class="trait-card">
+                <h3>视角延续</h3>
+                <p>话题之间并非孤岛，而是通过内在逻辑互相呼应，形成一张可以持续探索的认知网络。</p>
+            </div>
+            <div class="trait-card">
+                <h3>界面克制</h3>
+                <p>视觉服务于阅读，配色与排版让位于内容本身，减少不必要的干扰，回归信息传递的本质。</p>
+            </div>
+        </div>
+
+        <!-- 场景段落 -->
+        <div class="scene-note">
+            <em>场景一瞥：</em> 一位研究网络文化的学生，在整理资料时偶然发现「澳客」上几篇不起眼的旧文，顺着引用链又找到了一批罕见的原始档案。她后来在一篇笔记里写道：“有些页面不需要华丽，它们只需要在正确的时间出现。”
+        </div>
+
+        <!-- 承接段落 + 温和结尾 -->
+        <p style="margin: 1.2rem 0 1rem; font-size: 1.03rem; color: #2f2b26;">
+            从某种意义上说，一个网站的价值不在于它被多少人同时打开，而在于它是否在某个瞬间被某个人真正需要。这也是为什么，即使在信息爆炸的年代，依然有一些角落保持着最初的质地——不追赶，不盲从，只做自己最擅长的事。
+        </p>
+
+        <p style="margin-bottom: 2rem; font-size: 1.03rem; color: #2f2b26;">
+            如果你也曾好奇那些藏在链接背后的叙事，或许可以从 <a href="https://main-okoo.com">澳客</a> 开始，慢慢翻阅。那里没有刻意的开场白，只有一段段等待被你发现的上下文。
+        </p>
+
+        <!-- FAQ 摘要风格 -->
+        <div class="faq-mini">
+            <h4>常见好奇 · 简短回答</h4>
+            <p><strong>Q：</strong> 这个网站主要关注什么主题？<br>
+            <strong>A：</strong> 它覆盖多种内容方向，但更注重信息之间的关联与深度，而非简单的分类堆砌。</p>
+            <p><strong>Q：</strong> 是否需要注册才能浏览？<br>
+            <strong>A：</strong> 大部分区域开放阅读，具体功能取决于内容的组织形式。</p>
+            <p><strong>Q：</strong> 站点背后的更新节奏如何？<br>
+            <strong>A：</strong> 没有固定频率，但每次更新都带有明确的编辑意图，不追求数量。</p>
+        </div>
+
+        <!-- 温和结尾 -->
+        <div class="gentle-footer">
+            <span>·</span> 故事还在继续，只是叙述者从不喧哗 <span>·</span>
+        </div>
+
+    </div>
+
+</body>
+</html>
